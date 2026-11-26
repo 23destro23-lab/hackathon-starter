@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Hackathon Starter{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Hackathon Starter</a>
+    <span>FastAPI · PostgreSQL · Jinja2</span>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+</body>
+</html>

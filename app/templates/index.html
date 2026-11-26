@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Главная — Hackathon Starter{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">STARTER TEMPLATE</p>
+  <h1>Ваш проект начинается здесь</h1>
+  <p class="muted">Это демонстрационная сущность. Замените её моделями и сценариями своего приложения.</p>
+</section>
+
+<section class="panel">
+  <h2>Добавить элемент</h2>
+  <form action="/items" method="post" class="item-form">
+    <label>Название
+      <input name="title" maxlength="200" required placeholder="Например, первая задача">
+    </label>
+    <label>Описание
+      <textarea name="description" rows="3" placeholder="Необязательное описание"></textarea>
+    </label>
+    <button type="submit">Добавить</button>
+  </form>
+</section>
+
+<section class="panel">
+  <div class="section-heading">
+    <h2>Элементы из PostgreSQL</h2>
+    <span class="count">{{ items|length }}</span>
+  </div>
+  {% if items %}
+    <div class="items">
+      {% for item in items %}
+      <article class="item">
+        <div>
+          <h3>{{ item.title }}</h3>
+          {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+          <small>#{{ item.id }} · {{ item.created_at.strftime("%d.%m.%Y %H:%M") }}</small>
+        </div>
+        <form action="/items/{{ item.id }}/delete" method="post" onsubmit="return confirmDelete()">
+          <button class="button-danger" type="submit">Удалить</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty">Пока ничего нет. Добавьте первый элемент.</p>
+  {% endif %}
+</section>
+{% endblock %}

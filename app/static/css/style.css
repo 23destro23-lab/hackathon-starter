@@ -1,0 +1,27 @@
+:root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #172033; background: #f4f6fb; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.topbar { height: 64px; padding: 0 max(24px, calc((100% - 960px)/2)); display:flex; align-items:center; justify-content:space-between; background:#fff; border-bottom:1px solid #e7eaf1; color:#667085; font-size:14px; }
+.brand { color:#172033; font-weight:750; text-decoration:none; font-size:17px; }
+.container { width:min(900px, calc(100% - 32px)); margin:48px auto; }
+.hero { margin-bottom:28px; }
+.eyebrow { color:#536dfe; font-size:12px; font-weight:800; letter-spacing:.12em; }
+h1 { font-size:clamp(30px, 5vw, 46px); letter-spacing:-.04em; margin:8px 0; }
+h2 { font-size:20px; margin:0 0 18px; }
+h3 { margin:0 0 6px; }
+.muted, small, .empty { color:#667085; }
+.panel { background:#fff; border:1px solid #e7eaf1; border-radius:16px; padding:24px; margin:18px 0; box-shadow:0 4px 18px #17203308; }
+.item-form { display:grid; gap:14px; }
+label { display:grid; gap:7px; font-size:14px; font-weight:600; }
+input, textarea { width:100%; border:1px solid #d7dce5; border-radius:9px; padding:11px 12px; font:inherit; background:#fff; }
+input:focus, textarea:focus { outline:2px solid #c7d2fe; border-color:#7185ff; }
+button { border:0; border-radius:9px; padding:11px 16px; color:#fff; background:#536dfe; font:inherit; font-weight:650; cursor:pointer; justify-self:start; }
+button:hover { filter:brightness(.95); }
+.button-danger { background:#fff0f0; color:#b42318; padding:8px 11px; }
+.section-heading, .item { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.count { border-radius:20px; background:#eef1ff; color:#465cf5; padding:4px 10px; font-size:13px; }
+.item { padding:16px 0; border-top:1px solid #edf0f5; align-items:flex-start; }
+.item p { margin:0 0 8px; color:#475467; }
+.item small { font-size:12px; }
+.empty { padding:12px 0 0; }
+@media (max-width:600px) { .topbar span { display:none; } .container { margin:28px auto; } .panel { padding:18px; } }

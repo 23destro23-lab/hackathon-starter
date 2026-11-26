@@ -1,40 +1,18 @@
-## Локальный запуск 
+## Локальный запуск тестового проекта
 
-Требуется Python 3.11+ и доступный PostgreSQL 14+.
-
-1. Создайте базу данных и пользователя PostgreSQL. Например, из `psql` под администратором:
+1. Создайте базу данных. Например, из `psql` под администратором:
 
 ```sql
-CREATE USER postgres WITH PASSWORD 'admin';
 CREATE DATABASE hackathon_db OWNER postgres;
 ```
 
-Если пользователь уже существует, повторно создавать его не нужно.
-
-2. Создайте и активируйте виртуальное окружение:
-
-```bash
-python -m venv .venv
-```
-
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-
-3. Установите зависимости и настройте окружение:
-
-```bash
-pip install -r requirements.txt
-```
-
-Проверьте `DATABASE_URL` и укажите свои параметры PostgreSQL:
+2. Проверьте `DATABASE_URL` и укажите свои параметры PostgreSQL:
 
 ```env
 DATABASE_URL=postgresql+psycopg://admin:postgres@localhost:5432/hackathon_db
 ```
 
-4. Примените миграции и запустите сервер:
+3. Примените миграции и запустите сервер:
 
 ```bash
 alembic upgrade head
@@ -42,6 +20,29 @@ uvicorn app.main:app --reload
 ```
 
 Откройте http://localhost:8000.
+
+## Загрузка БД студентов из файла excel
+
+1. Установите дополнительные библиотеки:
+
+```bash
+pip install openpyxl, pandas
+```
+
+2. Создайте базу данных. Например, из `psql` под администратором:
+
+```sql
+create database test;
+```
+
+3. Примените миграции и запустите скрипт:
+
+```bash
+alembic upgrade head
+python .\load_db\main.py
+```
+
+
 
 ## Примеры API
 
@@ -55,8 +56,6 @@ uvicorn app.main:app --reload
 
 
 ## Как добавить свою сущность
-
-Допустим, вы разрабатываете приложение для управления событиями.
 
 1. Создайте модель в `app/models/event.py`, унаследовав её от `Base`.
 2. Создайте Pydantic-схемы в `app/schemas/event.py`.
@@ -82,7 +81,7 @@ app/
   schemas/    # Pydantic-схемы запросов и ответов
   crud/       # операции чтения и записи в БД
   routers/    # HTTP API и HTML-страницы
-  templates/ # Jinja2-шаблоны
+  templates/  # Jinja2-шаблоны
   static/     # CSS и JavaScript
 alembic/      # миграции БД
 ```
